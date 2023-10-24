@@ -13,10 +13,11 @@ public class PlayerInteractionScript : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private GameObject interactionPrompt;
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] float walkSpeed;
 
+    [SerializeField] private Rigidbody2D rb;
+    public bool flippy;
+    [SerializeField] float walkSpeed;
+    private MovementScript movement;
 
     private int _xDirection;
     public int XDirection
@@ -49,40 +50,40 @@ public class PlayerInteractionScript : MonoBehaviour
     }
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
-
+        movement = GetComponent<MovementScript>();
     }
 
     // Update is called once per frame
-   void FixedUpdate()
+    void FixedUpdate()
     {
         MovementMethod();
     }
-      public void MovementMethod()
+    public void MovementMethod()
     {
-        
+
         if (FindObjectOfType<DialougeManager>().DialougeActive)
         {
             //So we can't move during dialouge
             return;
         }
-        
-        //smell but oh well
-            if (((int)Input.GetAxisRaw("Horizontal") != 0) || (int)Input.GetAxisRaw("Vertical") != 0)
-            {
-                rb.position += walkSpeed * directionFacing;
-            }
+
+        if (((int)Input.GetAxisRaw("Horizontal") != 0) || (int)Input.GetAxisRaw("Vertical") != 0)
+        {
+            rb.position += movement.directionFacing * movement.walkSpeed;
+
+        }
+
+
+
 
     }
     void Update()
     {
-  #region Animator
-        animator.SetFloat("DirectionX", directionFacing.x);
-        animator.SetFloat("DirectionY", directionFacing.y);
+        #region Animator
+
         #endregion
 
         interactionPrompt.SetActive(false);
@@ -92,35 +93,25 @@ public class PlayerInteractionScript : MonoBehaviour
         if (collider is not null)
         {
             //todo fix this logic that was good before adding prior "collider not null" block
-        if (!FindObjectOfType<DialougeManager>().DialougeActive && collider.gameObject.TryGetComponent(out script))
-        {
-            interactionPrompt.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (!FindObjectOfType<DialougeManager>().DialougeActive && collider.gameObject.TryGetComponent(out script))
             {
-                script.StartDialouge();
+                interactionPrompt.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    script.StartDialouge();
+                }
             }
+
         }
-    
-        }
-        
+
     }
 
     private void UpdateDirectionFacing()
     {
 
-        //Raw so we don't have yucky damping and delayed change
-        YDirection = (int)Input.GetAxisRaw("Vertical");
-        XDirection = (int)Input.GetAxisRaw("Horizontal");
-        // directionFacing.x = XDirection == 0? directionFacing.x : XDirection;
-        // directionFacing.y = YDirection == 0? directionFacing.y : YDirection;
-
-        //If both inequal zero
-        if (!(XDirection == YDirection && XDirection == 0))
-        {
-            directionFacing.x = XDirection;
-            directionFacing.y = YDirection;
-
-        }
-
+        //Supply direction to the movement manager
+        GetComponent<MovementScript>().directionSupplied.y = (int)Input.GetAxisRaw("Vertical");
+        GetComponent<MovementScript>().directionSupplied.x = (int)Input.GetAxisRaw("Horizontal");
     }
+
 }

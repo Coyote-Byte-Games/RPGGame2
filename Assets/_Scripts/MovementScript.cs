@@ -6,6 +6,10 @@ public class MovementScript : MonoBehaviour
 {
 
     #region Properties
+        [SerializeField] private Animator animator;
+    [SerializeField] SpriteRenderer sr;
+    public bool flippy;
+
 
     private int _xDirection;
     
@@ -32,11 +36,10 @@ public class MovementScript : MonoBehaviour
     #endregion
 
 
-    public Animator animator;
     public Vector2 directionSupplied;
     public Rigidbody2D rb;
     //todo assign to tiles per turn
-    public int walkSpeed;
+    public float walkSpeed;
     public Vector2 directionFacing;
     public void MovementMethod()
     {
@@ -53,7 +56,17 @@ public class MovementScript : MonoBehaviour
     }
     private void UpdateDirectionFacing()
     {
+   animator.SetFloat("DirectionX", directionFacing.x);
+        animator.SetFloat("DirectionY", directionFacing.y);
+        if (directionFacing.x > 0 && flippy)
+        {
+            sr.flipX = true;
+        }
+        else if (directionFacing.x < 0 && flippy)
+        {
+            sr.flipX = false;
 
+        }
         //Raw so we don't have yucky damping and delayed change
         YDirection =  Mathf.RoundToInt(directionSupplied.y);
         XDirection = Mathf.RoundToInt(directionSupplied.x);

@@ -18,7 +18,17 @@ public class AttackUIData : MonoBehaviour
     }
     public void SetKeybind(string keyBindLookup)
     {
-     this.keybindIcon = (Image)Resources.Load($"keys/{keyBindLookup}");   
+        Debug.Log(keyBindLookup);
+        try
+        {
+     this.keybindIcon.sprite = Resources.Load($"keys/{keyBindLookup}", typeof(Sprite)) as Sprite; 
+            
+        }
+        catch (System.Exception e)
+        {
+            
+Debug.LogError(e);
+        }
     }
     public void OnValidate()
     {

@@ -20,7 +20,6 @@ public class CombatManager : Singleton<CombatManager>
         {
             yield return new WaitForSeconds(clockDuration);
             clockCycleEnd?.Invoke();
-            Debug.Log("clock cycle triggered");
 
         }
     }

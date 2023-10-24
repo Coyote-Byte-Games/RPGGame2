@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 1226017106202577577}
   - component: {fileID: 279933247832066959}
   - component: {fileID: 7942549181064009817}
+  - component: {fileID: 2915096197196125149}
   m_Layer: 7
   m_Name: SporkCombat
   m_TagString: Untagged
@@ -490,7 +491,7 @@ Transform:
   m_GameObject: {fileID: 4140831727022233521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7924255238121835926}
@@ -531,7 +532,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2.69}
+  m_Offset: {x: -0.007745266, y: 0.3661105}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -542,7 +543,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.79, y: 4.7}
+  m_Size: {x: 1.0934064, y: 0.7399365}
   m_EdgeRadius: 0
 --- !u!114 &279933247832066959
 MonoBehaviour:
@@ -564,6 +565,8 @@ MonoBehaviour:
   interactionPrompt: {fileID: 9122193447157776869}
   animator: {fileID: 1226017105964946319}
   rb: {fileID: 1226017106202577579}
+  sr: {fileID: 5429722228989547297}
+  flippy: 1
   walkSpeed: 0.2
 --- !u!114 &7942549181064009817
 MonoBehaviour:
@@ -578,6 +581,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats: {fileID: 11400000, guid: 3c5b9554be2eb4f449ac59620d04ef89, type: 2}
+--- !u!114 &2915096197196125149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140831727022233521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f109eaa69db4ee8489eb2a863adcb37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 7942549181064009817}
+  attackUI: {fileID: 0}
 --- !u!1 &8078610010648710285
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8078610010648710285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -654,7 +671,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -55316944, guid: 67c63db2de6368f428d1be2fbb284ade, type: 3}
+  m_Sprite: {fileID: -1032180846, guid: fd2672134d5477d4a8d1d71436c8b72a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
