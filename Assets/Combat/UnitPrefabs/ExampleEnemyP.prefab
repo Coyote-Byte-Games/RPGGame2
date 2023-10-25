@@ -195,6 +195,12 @@ MonoBehaviour:
     downTime: 1
     tilesPerTurn: 1
     attacks: []
+  statInstance:
+    unitFaction: 0
+    hp: 0
+    downTime: 0
+    tilesPerTurn: 0
+    attacks: []
 --- !u!50 &4779035498859741653
 Rigidbody2D:
   serializedVersion: 4

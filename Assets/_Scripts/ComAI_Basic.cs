@@ -45,13 +45,21 @@ public class ComAI_Basic : ComAIBasic
         {
 
             #region direction towards target
-
+            try
+            {
             UnityEngine.Vector2 direction = (target.transform.position - transform.position).normalized;
-            #endregion
-            movementDriver.directionSupplied = direction;
+                  movementDriver.directionSupplied = direction;
             movementDriver.MovementMethod();
             clockTicksSinceLastMove = 0;
 
+            }
+            catch (System.Exception)
+            {
+                
+                
+            }
+            #endregion
+          
         }
 
 
