@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -13,7 +14,7 @@ public class InventoryScript : MonoBehaviour
 {
     public GameObject[] inventoryItemPrefabs;
     private int totalSlots;
-    public int startingSlotCount;
+    public int slotCount;
     // public InventorySlot[] slots;
     public GameObject InventorySlotPrefab;
     //Below this will be the slots instantiated
@@ -22,8 +23,36 @@ public class InventoryScript : MonoBehaviour
     {
         return slotParent.GetComponentsInChildren<InventorySlot>().Select(x => x.GetItem()).ToList();
     }
+    private void MoveItem(int start, int end)
+    {
+        //todo this thing
+    }
+    //Method to remove inventory at slot
+    //Method to sort entire inventory
+    private void Sort()
+    {
+    Queue<int> empties = new Queue<int>();
+    //what we want is to go through every slot and see if its occupied
+    Predicate<InventorySlot> Occupied = new Predicate<InventorySlot>((x) => x.IsOccupied());
+    for (int i = 0; i < totalSlots; i++)
+    {
+        //If it's empty, add i to the queue
+        if (!Occupied(getSlot(i)))
+        {
+            empties.Enqueue(i);
+        }
+        //If full, move it to the first empty slot and dequeue
+        if (empties.Count > 0)
+        {
+            //mmmmmmmmmmm icecream yummmy
+            int indexToGoInto = empties.Dequeue();
+            MoveItem(i, indexToGoInto);
+        }
+    }
+    }
     public void SetSize(int capacity)
     {
+        slotCount = capacity;
         //todo this is kinda jank but whatever im sick of working on this
         if (capacity == 0)
         {
@@ -62,57 +91,12 @@ public class InventoryScript : MonoBehaviour
         totalSlots = capacity;
     }
 
-    //     public override void OnInspectorGUI   ()
-    // 	{
-    // 		EditorGUI.BeginChangeCheck();
-    // 		SetSize(startingSlotCount);
-    // // EditorGUILayout.ObjectField()
-    // 		if(EditorGUI.EndChangeCheck())
-    // 			Debug.Log("string changed");
-    // 	}
-
-    //effectively need to find an index where a is free, and a -1 isn't
-
-    // private int GetFirstSlotIndexAvailable()
-    // {
-    //     //Some helper variables
-    //     Predicate<int> isFree = new Predicate<int>((x) => !getSlot(x).IsOccupied());
-    //     Predicate<int> isPriorOccupied = new Predicate<int>((x) =>  getSlot(x - 1).IsOccupied());
-    //     Predicate<int> goRight = new Predicate<int>( (x) => !getSlot(x).IsOccupied());
-        
-    //     int left = 0;
-    //     int right = totalSlots - 1;
-    //     int incrementer = 1;
-
-    //     int subject = (left+right)/2;
-    //     //In effect, if it's free, we want to go left
-    //     //And if it's closed, we want to go right 
-    //  while (right - subject > 1)
-    //  {
-
-    //     if (!isPriorOccupied(subject))
-    //     {
-    //         subject = (int)math.floor((subject - left)/2); 
-    //     }
-
-    //     else if(!isFree(subject))
-    //     {
-    //         subject = (int)math.floor((right - subject)/2); 
-
-    //     }
-    //     else{
-    //         return subject;
-    //     }
-
-      
-    //  }
-    //  return -1;
-
-    // }
    private Transform GetFirstSlotAvailable()
    {
+    
     foreach (Transform item in slotParent.transform)
     {
+        Debug.Log("Rank 2 KEKLOL!");
         if (!item.GetComponent<InventorySlot>().IsOccupied())
         {
             return item;
@@ -136,6 +120,8 @@ public class InventoryScript : MonoBehaviour
     // }
     public void AddItem(ItemMB toAdd)
     {
+        Debug.Log((slotParent is null ) + " keklol");
+        //Currently, slot parent has no children
         InventorySlot slot = GetFirstSlotAvailable().GetComponent<InventorySlot>();
         slot.AddItem(toAdd);
     }
@@ -164,17 +150,71 @@ public class InventoryScript : MonoBehaviour
     }
     public void TestAddItmes()
     {
-        // foreach (var item in inventoryItemPrefabs)
-        // {
-        //     AddItem(Instantiate(item));
-        // }
+        foreach (var item in inventoryItemPrefabs)
+        {
+            AddItem(Instantiate(item));
+        }
     }
     public void Update()
     {
-        SetSize(startingSlotCount);
+        SetSize(slotCount);
+        if (Input.GetKey(KeyCode.T))
+        {
+            SaveInventory();
+        }
     }
     public void Start()
     {
         TestAddItmes();
+    }
+
+
+
+
+    //Saving the ItemMBs in a format where they can be loaded
+    public void SaveInventory()
+    {
+        InventoryInstanceData inventoryData = new();
+        //Get each item, and the count
+        foreach (var item in GetItems())
+        {
+            inventoryData.Add(new ItemSave{itemID = item.GetID(), count=item.stacksHeld});
+        }
+        SaveDataHelper.SaveInventory(inventoryData);
+        //Save this data somewhere   
+    }
+    public void WipeInventory()
+    {
+        
+    }
+    public void LoadInventory()
+    {
+        WipeInventory();
+        var newInventory = SaveDataHelper.LoadInventory();
+    }
+    [Serializable]
+    public struct ItemSave
+    {
+        public int itemID;
+        public int count;
+    }
+    [Serializable]
+    public class InventoryInstanceData : CollectionBase
+    {
+        public void Add(ItemSave item)
+        {
+            this.List.Add(item);
+        }
+         public ItemSave this[int i]  
+        {  
+            get  
+            {  
+                return (ItemSave)this.List[i];  
+            }  
+            set  
+            {  
+                this.List.Add(value);  
+            }  
+        }  
     }
 }

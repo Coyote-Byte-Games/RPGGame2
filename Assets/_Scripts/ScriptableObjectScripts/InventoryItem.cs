@@ -8,8 +8,8 @@ public class InventoryItem : ScriptableObject
 public string itemName;
 public Sprite icon;
 // public ItemType type;
-public bool stackable = true;
-public short stackLimit = 64;
+public bool stackable = false;
+public short stackLimit = 1;
 public itemID itemID;
 }
 public enum ItemType

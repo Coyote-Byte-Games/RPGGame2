@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: RPG Game 2
+  companyName: Coyote Byte Games
+  productName: That Time I was Hit by a Truck!
   defaultCursor: {fileID: 2800000, guid: b81eb4e782ba7d9449a54df953e368a9, type: 3}
   cursorHotspot: {x: 320, y: 320}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 0.01
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0

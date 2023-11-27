@@ -28,7 +28,9 @@ public class EquipmentSlotScript : MonoBehaviour
         //Fill the popup
 
         InventoryScript inventory = prefab.GetComponent<InventoryScript>();
-        inventory.startingSlotCount = (itemsWeActuallyWant.Count());
+        // inventory.slotCount = (itemsWeActuallyWant.Count());
+
+        inventory.SetSize(itemsWeActuallyWant.Count());//startingSlotCount = (itemsWeActuallyWant.Count());
         foreach (ItemMB item in itemsWeActuallyWant)
         {
             Debug.Log("giggity");
