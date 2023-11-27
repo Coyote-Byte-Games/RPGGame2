@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +11,8 @@ using UnityEngine;
 public class ComAI_Basic : ComAIBasic
 {
     public MovementScript movementDriver;
+    public Attack closeAttack;
+    public int attackRange = 2;
     //Entryway into unit stats, etc.
     public UnitMB unitData;
     // public Faction thisFaction;
@@ -35,7 +36,7 @@ public class ComAI_Basic : ComAIBasic
         //Perhaps an algorithm to find a certain target based off of stats and faction?
         // movementDriver.walkSpeed = unitData.statInstance.tilesPerTurn;
         CombatManager.instance.clockCycleEnd += MoveWithClock;
-
+        unitData.OnUpdate += closeAttack.TickCooldown;
     }
     private void MoveWithClock()
     {
@@ -47,22 +48,37 @@ public class ComAI_Basic : ComAIBasic
             #region direction towards target
             try
             {
-            UnityEngine.Vector2 direction = (target.transform.position - transform.position).normalized;
-                  movementDriver.directionSupplied = direction;
-            movementDriver.MovementMethod();
-            clockTicksSinceLastMove = 0;
+                if (!TryAttack())
+                {
+                    Vector2 direction = (target.transform.position - transform.position).normalized;
+                    movementDriver.directionSupplied = direction;
+                    movementDriver.MovementMethod();
+                }
+
+                clockTicksSinceLastMove = 0;
 
             }
             catch (System.Exception)
             {
-                
-                
+
+
             }
             #endregion
-          
+
         }
 
 
+    }
+    public bool TryAttack()
+    {
+        //Check if target within range
+        if (Vector2.Distance(transform.position, target.transform.position) < attackRange)
+        {
+            closeAttack.Use(gameObject);
+            return true;
+        }
+        return false;
+        //If target in range, use attack
     }
     public void Update()
     {
@@ -70,15 +86,5 @@ public class ComAI_Basic : ComAIBasic
         //todo create the combat clock and sync with that
 
     }
-    // private IEnumerator MoveWithClock()
-    // {
-
-    //     for (; ; )
-    //     {
-
-
-    //         yield return new WaitForSeconds(1 * unitData.statInstance.downTime );
-    //     }
-    // }
 
 }

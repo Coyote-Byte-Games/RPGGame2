@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 public class AttackBarScript : MonoBehaviour
 {
     //The template
-    private List<Attack> attacksAdded;
     public GameObject attackUITemplate;
     public int numberOfAttacksRegistered;
     //todo DRY smell

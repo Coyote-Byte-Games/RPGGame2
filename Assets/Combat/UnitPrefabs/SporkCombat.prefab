@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1226017104991070629}
   - component: {fileID: 1226017104991070628}
-  m_Layer: 7
+  m_Layer: 20
   m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1226017105611767150}
-  m_Layer: 7
+  m_Layer: 20
   m_Name: interactPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 1226017105849922920}
   - component: {fileID: 1226017105849922926}
   - component: {fileID: 1226017105849922927}
-  m_Layer: 7
+  m_Layer: 20
   m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 7339656710951217359}
   - component: {fileID: 6475981918375950563}
   - component: {fileID: 9073846204444627928}
-  m_Layer: 7
+  m_Layer: 20
   m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,11 @@ GameObject:
   - component: {fileID: 279933247832066959}
   - component: {fileID: 7942549181064009817}
   - component: {fileID: 2915096197196125149}
-  m_Layer: 7
+  - component: {fileID: 2915096197196125153}
+  - component: {fileID: 2915096197196125157}
+  - component: {fileID: 2915096197196125158}
+  - component: {fileID: 5678522116404839061}
+  m_Layer: 20
   m_Name: SporkCombat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +515,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 171.35
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -563,9 +567,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   interactionPrompt: {fileID: 9122193447157776869}
-  animator: {fileID: 1226017105964946319}
   rb: {fileID: 1226017106202577579}
-  sr: {fileID: 5429722228989547297}
   flippy: 1
   walkSpeed: 0.2
 --- !u!114 &7942549181064009817
@@ -580,7 +582,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a534a467dd34f44897dbcd403b6e285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: 3c5b9554be2eb4f449ac59620d04ef89, type: 2}
+  healthBar: {fileID: 0}
+  TextEmitter: {fileID: 2915096197196125157}
+  baseStats:
+    unitFaction: 0
+    hp: 200
+    downTime: 0
+    tilesPerTurn: 0
+    attacks:
+    - attackName: Sweeping Cut
+      animationName: Attack
+      attackGameObject: {fileID: 8830590586230495390, guid: 4cbf92eaaa9992a4584527d3e4a50164, type: 3}
+      progressBar: {fileID: 0}
+      coolDownLength: 0.5
+      coolDownRemaining: 0
+      coolDownReady: 0
+    - attackName: Backstep
+      animationName: Dodge
+      attackGameObject: {fileID: 382556323094428253, guid: 57a24a2a46838b442b89f389f1904611, type: 3}
+      progressBar: {fileID: 0}
+      coolDownLength: 0.1
+      coolDownRemaining: 0
+      coolDownReady: 0
+  statInstance:
+    unitFaction: 0
+    hp: 0
+    downTime: 0
+    tilesPerTurn: 0
+    attacks: []
 --- !u!114 &2915096197196125149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,6 +624,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitData: {fileID: 7942549181064009817}
   attackUI: {fileID: 0}
+--- !u!114 &2915096197196125153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140831727022233521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919813858b0b23048a37a097f35f8e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1226017105964946319}
+  sr: {fileID: 5429722228989547297}
+  flippy: 1
+  directionSupplied: {x: 0, y: 0}
+  rb: {fileID: 1226017106202577579}
+  walkSpeed: 0.2
+  directionFacing: {x: 0, y: 0}
+--- !u!114 &2915096197196125157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140831727022233521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd61a26d751d1b4ca82b6f5b284b02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPrefab: {fileID: 6505245979090378375, guid: e32b0ab07f9fb1c489d418b243210526, type: 3}
+  destroyTime: 1
+--- !u!114 &2915096197196125158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140831727022233521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731f49ed19e5cb448b5b1712853c5417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5678522116404839061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140831727022233521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d498695373f7bf48a27eaf4f4b4f523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8078610010648710285
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +692,7 @@ GameObject:
   - component: {fileID: 7924255238121835926}
   - component: {fileID: 5429722228989547297}
   - component: {fileID: 1226017105964946319}
-  m_Layer: 7
+  m_Layer: 20
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6939793832750681808}
   - component: {fileID: 1745199967164659822}
-  m_Layer: 7
+  m_Layer: 20
   m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,7 +882,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3311231905608453315}
-  m_Layer: 7
+  m_Layer: 20
   m_Name: interactPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

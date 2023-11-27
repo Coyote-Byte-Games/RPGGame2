@@ -87,7 +87,7 @@ public class PlayerInteractionScript : MonoBehaviour
         #endregion
 
         interactionPrompt.SetActive(false);
-        var collider = Physics2D.Raycast(transform.position, directionFacing, interactDistance, layerMask).collider;
+        var collider = Physics2D.Raycast(transform.position, movement.directionFacing, interactDistance, layerMask).collider;
         InteractableScript script;
         UpdateDirectionFacing();
         if (collider is not null)

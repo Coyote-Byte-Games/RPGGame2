@@ -23,4 +23,8 @@ class GameObjectHelpers : Singleton<GameObjectHelpers>
         //time for the animation to end
         Destroy(kaboom, 25f/60f);
     }
+    public void CardinalizeVector(Vector2 input)
+    {
+        
+    }
 }

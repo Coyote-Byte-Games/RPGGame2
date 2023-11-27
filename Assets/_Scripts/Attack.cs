@@ -5,12 +5,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "Attack")]
+// [CreateAssetMenu(menuName = "Attack")]
 
-public class Attack : ScriptableObject
+[Serializable]
+public class Attack
+
 {
-      //The legal name assigned to the attack at birth. Deadname
-    public string attackName;
+      //The legal name assigned to the attack at birth. Deadname!
+    public string attackName = "Kill";
     //The trigger set when the attack is used
     public string animationName = "Attack";
     //created when the attack is used
@@ -18,7 +20,7 @@ public class Attack : ScriptableObject
     public LoadingBar progressBar;
 
 
-    [SerializeField] float coolDownLength;
+    [SerializeField] float coolDownLength = 1;
     [SerializeField] private float coolDownRemaining;
     [SerializeField] bool coolDownReady;
 
@@ -32,10 +34,7 @@ public class Attack : ScriptableObject
     {
 
         coolDownRemaining -= Time.deltaTime;
-
-        progressBar.SetFillAmount((coolDownLength - coolDownRemaining));
-
-        if (coolDownRemaining > 0)
+           if (coolDownRemaining > 0)
         {
             coolDownReady = false;
         }
@@ -44,14 +43,27 @@ public class Attack : ScriptableObject
         coolDownReady = true;
             
         }
+    try
+    {
+        progressBar.SetFillAmount((coolDownLength - coolDownRemaining)/coolDownLength);
+        
+    }
+    catch (System.Exception)
+    {
+        
+
     }
 
-     internal void Use(GameObject gameObject)
+     
+    }
+
+     internal void Use(GameObject userGameObject)
     {
         if (coolDownReady)
         {
-              var spawn = GameObject.Instantiate(attackGameObject, gameObject.transform.position, quaternion.identity);
-        spawn.GetComponent<AttackGameObject>().user = gameObject;
+            userGameObject.GetComponentInChildren<Animator>().SetTrigger(animationName);
+        var spawn = GameObject.Instantiate(attackGameObject, userGameObject.transform.position, quaternion.identity);
+        spawn.GetComponentInChildren<AttackGameObject>().user = userGameObject;
         coolDownReady= false;
         coolDownRemaining = coolDownLength;
 

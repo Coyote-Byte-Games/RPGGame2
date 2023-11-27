@@ -58,6 +58,7 @@ public class DialougeManager : MonoBehaviour
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
 
         }
+        dialougeObject.eventt?.Invoke();
         if (dialougeObject.HasResponses())
         {
             // portrait.enabled = false;

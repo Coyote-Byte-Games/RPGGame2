@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e47cf5c359f5042aa1c5e1b487cf81, type: 3}
+  m_Name: Dodge
+  m_EditorClassIdentifier: 
+  attackName: Dodge
+  animationName: BackDodge
+  attackGameObject: {fileID: 382556323094428253, guid: 57a24a2a46838b442b89f389f1904611, type: 3}
+  progressBar: {fileID: 0}
+  coolDownLength: 3
+  coolDownRemaining: 0
+  coolDownReady: 0

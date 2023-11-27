@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,24 +13,28 @@ public class UnitMB : MonoBehaviour
    access to the instance data Stats
    */
    //todo fix privacy of field
+
+   public LoadingBar healthBar;
    public Action OnUpdate;
+   public CharacterTextEmitter TextEmitter;
    [SerializeField] private Stats baseStats;
    public Stats statInstance;
    public void Awake()
    {
       statInstance = baseStats;
+
    }
 
-public void Update()
-{
-   OnUpdate?.Invoke();
-   #region am I truly alive?
+   public void Update()
+   {
+      OnUpdate?.Invoke();
+      #region am I truly alive?
       if (statInstance.hp <= 0)
       {
          GameObjectHelpers.instance.Kablooey(this);
       }
-   #endregion
-}
+      #endregion
+   }
    public void OnTriggerEnter2D(Collider2D collision)
    {
       Debug.Log($"Trigger enter with {name} colliding with {collision.name}");
@@ -44,41 +49,54 @@ public void Update()
       )
       {
          //take damage to stat
-        TakeDamage(attackScript.GetDamage());
+         TakeDamage(attackScript);
          //Show damage taken
       }
    }
 
-    private void TakeDamage(int takenDamage)
-    {
-      statInstance.hp -= takenDamage;
-      Debug.Log($"{name} took {takenDamage} damage, and now has {statInstance.hp} health remaining!");
-    }
+   private void TakeDamage(AttackGameObject attack)
+   {
+      statInstance.hp -= attack.GetDamage();
+
+      //Damage string
+      string damageString = attack.damage.ToString() + (attack.isCrit ? $" ✕ {attack.critMultiplier}!" : "");
+      TextEmitter.ShowText(damageString, attack.isCrit ? CharacterTextEmitter.TextStyle.Dire : CharacterTextEmitter.TextStyle.Neutral);
+      //health bar
+      if (healthBar is not null)
+      {
+         healthBar.SetFillAmount((float)statInstance.hp / baseStats.hp);
+
+      }
+      
+      //todo sloppy, fix this
+   GetComponent<MovementScript>().MoveUnit((attack.transform.position  -transform.position).normalized, attack.knockBack, 15);
+
+   }
 }
 [Serializable]
 public struct Stats
 {
 
 
-    public Faction unitFaction;
+   public Faction unitFaction;
 
-    public int hp;
-    /// <summary>
-    /// The time the unit takes between turns
-    /// </summary>
-    public float downTime;
-    public int tilesPerTurn;
-
-
+   public int hp;
+   /// <summary>
+   /// The time the unit takes between turns
+   /// </summary>
+   public float downTime;
+   public int tilesPerTurn;
 
 
 
-    //Attacks available to unit
-    public List<Attack> attacks;
+
+
+   //Attacks available to unit
+   public List<Attack> attacks;
 
 }
 public enum Faction
 {
-    Friendly,
-    Enemy,
+   Friendly,
+   Enemy,
 }

@@ -101,6 +101,6 @@ public class PlayerAttackScript : MonoBehaviour
 
     private void UseAttack(Attack attack)
     {
-        attack.Use(gameObject);
+        attack.Use(unitData.gameObject);
     }
 }
