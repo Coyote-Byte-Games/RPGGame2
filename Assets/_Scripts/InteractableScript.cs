@@ -9,7 +9,7 @@ public class InteractableScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialougeManager = FindAnyObjectByType<DialougeManager>();
     }
 
     // Update is called once per frame

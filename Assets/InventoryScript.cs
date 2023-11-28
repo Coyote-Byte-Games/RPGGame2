@@ -12,6 +12,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class InventoryScript : MonoBehaviour
 {
+    public bool CloseOnSelect = false;
     public GameObject[] inventoryItemPrefabs;
     private int totalSlots;
     public int slotCount;
@@ -21,7 +22,20 @@ public class InventoryScript : MonoBehaviour
     public GameObject slotParent;
     public List<ItemMB> GetItems()
     {
-        return slotParent.GetComponentsInChildren<InventorySlot>().Select(x => x.GetItem()).ToList();
+        //im like 99 percent sure this is the error point
+        //  slotParent.GetComponentsInChildren<InventorySlot>().Select(x => x.GetItem()).ToList();
+        
+        // return slotParent.GetComponentsInChildren<InventorySlot>().Select(x => x.GetItem()).ToList();
+        List<ItemMB> output = new List<ItemMB>();
+        foreach (Transform item in slotParent.transform)
+        {
+            var script =item.GetComponent<InventorySlot>(); 
+            if (script.IsOccupied())
+            {
+                output.Add(script.GetItem());
+            }   
+        }
+return output;
     }
     private void MoveItem(int start, int end)
     {
@@ -78,6 +92,7 @@ public class InventoryScript : MonoBehaviour
                 //imperfect, but it works in most cases
                 item.name = $"slot{slotParent.transform.childCount + 1}";
                 Instantiate(item, slotParent.transform);
+                item.GetComponent<InventorySlot>().LeaveOnSelect = CloseOnSelect;
             }
         }
         //Shrinkage

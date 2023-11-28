@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5704846626486160141}
   - component: {fileID: 2322053411091131344}
   m_Layer: 0
-  m_Name: sycthe
+  m_Name: sycthe 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,18 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1d9e3b10cda884389206b95e2bb10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Harvest
+  itemName: Sk8
   stacksHeld: 1
   icon: {fileID: 0}
-  itemBase: {fileID: 11400000, guid: aaa13cf762c248b438dcec97791961af, type: 2}
-  attacks:
-  - attackName: hey! it worked!
-    animationName: 
-    attackGameObject: {fileID: 8830590586230495390, guid: 4cbf92eaaa9992a4584527d3e4a50164, type: 3}
-    progressBar: {fileID: 0}
-    coolDownLength: 0
-    coolDownRemaining: 0
-    coolDownReady: 0
+  itemBase: {fileID: 11400000, guid: cad1f7e92644cc847821977c383978c2, type: 2}
 --- !u!222 &5704846626486160141
 CanvasRenderer:
   m_ObjectHideFlags: 0

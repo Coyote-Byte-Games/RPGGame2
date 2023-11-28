@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -33,11 +34,31 @@ public class PlayerAttackScript : MonoBehaviour
     };
     [SerializeField] UnitMB unitData;
     Dictionary<char, Attack> inputAttackPairs = new Dictionary<char, Attack>();
-
+    Dictionary<ItemType, Attack> EquippedAttacks;
     [SerializeField] AttackBarScript attackUI;
-    private List<Attack> GetAvailableAttacks()
+    private List<Attack> GetBasicAvailableAttacks()
     {
         return unitData.statInstance.attacks;
+    }
+    private void UpdateEquippedAttacks()
+    {
+        //Gain access to equipped items
+        var equipment = GetComponent<UnitEquipmentScript>();
+        //For now, only worrying about weapons
+
+        List<Attack> nativeAndEquippedAttacks = GetBasicAvailableAttacks().Union(equipment.weapon.attacks).ToList();
+        
+        //Reset becasue yucky state
+        inputAttackPairs = new Dictionary<char, Attack>();
+       //coalesce the attacks from equipment with those native with keybinds
+        for (int i = 0; i < nativeAndEquippedAttacks.Count(); i++)
+        {
+            inputAttackPairs.Add(numbers[i+1], nativeAndEquippedAttacks[i]);
+            unitData.OnUpdate += nativeAndEquippedAttacks[i].TickCooldown;
+        }
+          SetAttacksOnUI(inputAttackPairs
+            .ToDictionary(pair => pair.Key.ToString(), pair => pair.Value));
+        
     }
     private void SetAttacksOnUI(List<Attack> input)
     {
@@ -71,10 +92,10 @@ public class PlayerAttackScript : MonoBehaviour
     void Start()
     {
         //add 1 to i to avoid 0 keybind  
-        for (int i = 0; i < GetAvailableAttacks().Count; i++)
+        for (int i = 0; i < GetBasicAvailableAttacks().Count; i++)
         {
-            inputAttackPairs.Add(numbers[i+1], GetAvailableAttacks()[i]);
-            unitData.OnUpdate += GetAvailableAttacks()[i].TickCooldown;
+            inputAttackPairs.Add(numbers[i+1], GetBasicAvailableAttacks()[i]);
+            unitData.OnUpdate += GetBasicAvailableAttacks()[i].TickCooldown;
         }
         SetAttacksOnUI(inputAttackPairs
             .ToDictionary(pair => pair.Key.ToString(), pair => pair.Value));

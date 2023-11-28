@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHeld: {fileID: 7448116249502126544, guid: edc082a999ff5d04da3755fec446e7a0, type: 3}
+  LeaveOnSelect: 0
 --- !u!114 &-2757923623042047760
 MonoBehaviour:
   m_ObjectHideFlags: 0

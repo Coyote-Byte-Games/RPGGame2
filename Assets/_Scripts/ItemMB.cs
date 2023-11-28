@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
@@ -8,6 +9,7 @@ public abstract class ItemMB : MonoBehaviour
     public int stacksHeld = 1;
     public Sprite icon;
     public InventoryItem itemBase;
+    public event Action OnInventorySelected;
     public void InitItem()
     {
         this.icon = itemBase.icon;
@@ -42,5 +44,10 @@ public abstract class ItemMB : MonoBehaviour
     }
     public abstract ItemType GetType();
     
-    public abstract void Use();
+    public virtual void Use()
+    {
+        OnInventorySelected?.Invoke();
+    }
+
+    public abstract ItemMB Clone();
 }
