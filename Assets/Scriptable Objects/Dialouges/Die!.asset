@@ -23,7 +23,7 @@ MonoBehaviour:
   eventt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3741548583475160478, guid: ba220b6eaa818c94098c696f803ba3af, type: 3}
+      - m_Target: {fileID: 472039201826454851, guid: ba220b6eaa818c94098c696f803ba3af, type: 3}
         m_TargetAssemblyTypeName: SceneTransitioner, Assembly-CSharp
         m_MethodName: OW2Combat
         m_Mode: 1

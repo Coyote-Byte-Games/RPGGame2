@@ -7,7 +7,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-[SerializeField]
+
 public class Response
 {
 public string responseText;

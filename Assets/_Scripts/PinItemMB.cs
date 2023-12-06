@@ -1,4 +1,5 @@
 using UnityEngine;
+using static InventoryItem;
 
 public class PinItemMB : ItemMB
 {

@@ -1,3 +1,4 @@
+
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -23,8 +24,12 @@ class GameObjectHelpers : Singleton<GameObjectHelpers>
         //time for the animation to end
         Destroy(kaboom, 25f/60f);
     }
-    public void CardinalizeVector(Vector2 input)
-    {
-        
+    public static GameObject CreatePopup(Transform caller, GameObject arg, int xSize, int ySize)
+    {  var prefab = Instantiate(arg,GameObject.Find("Canvas").transform);
+        prefab.transform.position = caller.position - new Vector3((caller.position.x>900 ? 500 : -500), 0,0);
+        // Debug.Log(caller.position.x + "bazinga wowowowowo");
+        prefab.GetComponent<RectTransform>().sizeDelta = new Vector2(xSize, ySize);
+        return prefab;
     }
+  
 }

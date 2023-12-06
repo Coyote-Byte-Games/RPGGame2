@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/01Combat.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/00OverWorldScene 1.unity
+    path: Assets/Scenes/00OverWorldScene.unity
     guid: 47f8cd9e074aac64bb6ab947309c59b2
+  - enabled: 1
+    path: Assets/guid-based-reference-master/Assets/CrossSceneReference/Samples/LoadFirst.unity
+    guid: 6f8ba3c4c3bf19d4999033b50832272b
+  - enabled: 1
+    path: Assets/guid-based-reference-master/Assets/CrossSceneReference/Samples/LoadSecond.unity
+    guid: 8acfd1b1a375f2049a2dde40d955ce3f
+  - enabled: 1
+    path: Assets/Scenes/ObjectHoard.unity
+    guid: 282c42708f5af8249aee9e34b0d3ef0f
   m_configObjects: {}

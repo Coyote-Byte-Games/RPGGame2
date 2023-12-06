@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerInteractionScript : MonoBehaviour
 {
+
     [SerializeField] private Vector2 directionFacing;
     [SerializeField] private float interactDistance;
     [SerializeField] private LayerMask layerMask;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static InventoryItem;
 //todo seperate file
 public class WeaponItemMB : ItemMB
 {
@@ -23,7 +24,7 @@ public class WeaponItemMB : ItemMB
     private void Equip()
     {
         //Get Spork
-        var spork = FindObjectsByType<PlayerAttackScript>(FindObjectsSortMode.None)[0];
+        var spork = GameObject.Find("Spork");
         UnitEquipmentScript sporkNoEquipment = spork.GetComponent<UnitEquipmentScript>(); 
         // Set sporks weapon
         sporkNoEquipment.EquipWeapon(this);

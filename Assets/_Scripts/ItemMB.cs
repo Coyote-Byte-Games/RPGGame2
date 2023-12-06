@@ -3,9 +3,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.Scripting;
+using static InventoryItem;
 public abstract class ItemMB : MonoBehaviour
 {
     public string itemName;
+    public string description = "Rations. Might just be good for something else, though...";
     public int stacksHeld = 1;
     public Sprite icon;
     public InventoryItem itemBase;
@@ -14,6 +16,7 @@ public abstract class ItemMB : MonoBehaviour
     {
         this.icon = itemBase.icon;
     }
+  
     public int GetID()
     {
         string key = "ItemID_"+itemName;
@@ -32,6 +35,14 @@ public abstract class ItemMB : MonoBehaviour
         return PlayerPrefs.GetInt(key);
         
     }
+    public static ItemMB GetFromID(int ID)
+    {
+
+        //The item we get from playerprefs
+
+        // ItemType output = Resources.Load<InventoryItem>("Items/{}");
+        return new WeaponItemMB();
+    } 
     public void Awake()
     {
 
