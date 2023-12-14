@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,7 +20,9 @@ public class UnitMB : MonoBehaviour
    public CharacterTextEmitter TextEmitter;
    [SerializeField] private Stats baseStats;
    public Stats statInstance;
-   public void Awake()
+
+   public event Action OnDeath;
+    public void Awake()
    {
       statInstance = baseStats;
 
@@ -69,9 +72,20 @@ public class UnitMB : MonoBehaviour
       }
       
       //todo sloppy, fix this
-   GetComponent<MovementScript>().MoveUnit((attack.transform.position  -transform.position).normalized, attack.knockBack, 15);
+      TakeKnockback((attack.transform.position - transform.position).normalized, attack.knockBack);
 
    }
+
+    private void TakeKnockback(Vector2 direction, int knockBack)
+    {
+          GetComponent<MovementScript>().MoveUnit(direction, knockBack, 15);
+
+    }
+
+    internal int GetHP()
+    {
+      return statInstance.hp;
+    }
 }
 [Serializable]
 public struct Stats

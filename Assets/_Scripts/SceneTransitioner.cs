@@ -12,6 +12,7 @@ public class SceneTransitioner : SingletonPersistent<SceneTransitioner>
     public CombatContextDataHost combatDataHost;
     Animator sceneChanger;
     // public CombatContextDataHost dataHost;
+   
     public void OW2Combat()
     {
         //Getting the transiiton screen
