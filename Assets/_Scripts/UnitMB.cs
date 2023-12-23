@@ -34,6 +34,7 @@ public class UnitMB : MonoBehaviour
       #region am I truly alive?
       if (statInstance.hp <= 0)
       {
+         OnDeath?.Invoke();
          GameObjectHelpers.instance.Kablooey(this);
       }
       #endregion
@@ -72,7 +73,7 @@ public class UnitMB : MonoBehaviour
       }
       
       //todo sloppy, fix this
-      TakeKnockback((attack.transform.position - transform.position).normalized, attack.knockBack);
+      // TakeKnockback((attack.transform.position - transform.position).normalized, attack.knockBack);
 
    }
 

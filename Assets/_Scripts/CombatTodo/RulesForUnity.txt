@@ -1,0 +1,2 @@
+    1) Start by using MonoBehaviours. Image ScriptableObjects only as data. Do not imagine ScriptableObjcts to have instance ethods, they are all static, and thus irresponsible for OOP.
+    2) Do not be afraid of creating new .cs files. Game development, especially in Unity, is too complex for a few classes to suffice.

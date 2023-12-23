@@ -9,12 +9,15 @@ public abstract class StaticInstance<T> : MonoBehaviour where T: MonoBehaviour
         instance = null;
         Destroy(gameObject);
     }
-    public T GetInstance()
+    public static T GetInstance()
     {
         if (instance is null)
         {
             GameObject newInstance = new GameObject();
             newInstance.AddComponent<T>();
+            //hmmmmmmmmmmmm
+            instance = Instantiate(newInstance).GetComponent<T>(); 
+
         }
         return instance;
     }

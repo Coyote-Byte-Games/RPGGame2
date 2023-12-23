@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Events;
 public class DialougeManager : MonoBehaviour
 {
 
@@ -15,7 +16,6 @@ public class DialougeManager : MonoBehaviour
     [SerializeField] TMP_Text nameText;
     public bool DialougeActive { get; private set; }
     public ResponseHandler responseHandler;
-    public DialougeSO testDialougeSO;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +30,7 @@ public class DialougeManager : MonoBehaviour
     {
 
     }
-    public void ShowDialouge(DialougeSO dialougeObject)
+    public void ShowDialouge(IDialougeObject dialougeObject)
     {
 
         DialougeActive = true;
@@ -39,41 +39,31 @@ public class DialougeManager : MonoBehaviour
         StartCoroutine(StepThroughDialouge(dialougeObject));
     }
 
-    private IEnumerator StepThroughDialouge(DialougeSO dialougeObject)
+    private IEnumerator StepThroughDialouge(IDialougeObject dialougeObject)
     {
-        if (dialougeObject.HasPortrait)
-        {
-            portrait.enabled = true;
-            portrait.sprite = dialougeObject.portrait;
-            nameText.text = dialougeObject.characterName;
-            
-        }
+        dialougeObject.ShowPortrait();
+
         skip.SetActive(true);
-        for (int i = 0; i < dialougeObject.dialouges.Length; i++)
+        for (int i = 0; i < dialougeObject.GetStrings().Length; i++)
         {
-            string dialouge = dialougeObject.dialouges[i];
-            yield return typeWriter.Run(dialouge, textLabel, 4);
-            if (i == dialougeObject.dialouges.Length - 1 && dialougeObject.HasResponses()) break;
-
+            string _string = dialougeObject.GetStrings()[i];
+            yield return typeWriter.Run(_string, textLabel, 4);
+            if (i == dialougeObject.GetStrings().Length - 1 && dialougeObject.HasResponses()) break;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
-
         }
-        dialougeObject.eventt?.Invoke();
+        dialougeObject.GetEvent()?.Invoke();
         if (dialougeObject.HasResponses())
         {
             // portrait.enabled = false;
             skip.SetActive(false);
 
-            responseHandler.ShowResponses(dialougeObject.responses);
+            responseHandler.ShowResponses(dialougeObject.GetResponses());
         }
         else
         {
             CloseDialouge();
         }
-
-
     }
-
     public void CloseDialouge()
     {
         dialougeBox.SetActive(false);
@@ -81,4 +71,14 @@ public class DialougeManager : MonoBehaviour
         DialougeActive = false;
 
     }
+}
+
+public interface IDialougeObject
+{
+    public String[] GetStrings();
+    UnityEvent GetEvent();
+
+    bool HasResponses();
+    void ShowPortrait();
+    Response[] GetResponses();
 }

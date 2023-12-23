@@ -6,52 +6,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class SceneTransitioner : SingletonPersistent<SceneTransitioner>
+public class SceneTransitioner : StaticInstance<SceneTransitioner>
 {
-    public GuidReference surrogateGUIDRef;
+    #region scene changers
+    public SceneHandsDirtyMan combatSceneChanger;
+    public SceneHandsDirtyMan overWorldSceneChanger;    
+    #endregion
     public CombatContextDataHost combatDataHost;
-    Animator sceneChanger;
     // public CombatContextDataHost dataHost;
    
     public void OW2Combat()
     {
-        //Getting the transiiton screen
-        sceneChanger = GameObject.Find("sceneCover").GetComponent<Animator>();
-
-        //fixme: sloppy garbage
-        FindObjectOfType<MonoBehaviour>().StartCoroutine(LoadCombat());
+        combatSceneChanger.To();
     }
-    private IEnumerator LoadCombat()
+    public void ToOW()
     {
-        for (; ; )
-        {
-            //Show the screen doin' the thing
-            
-            sceneChanger.SetTrigger("Close");
-            
-            //Show the info screen later
-
-            yield return new WaitForSeconds(2);
-
-            //loading the surrogate
-            surrogateGUIDRef.gameObject.GetComponent<UnitEquipmentScript>().SetFromInstance(GameObject.Find("Spork").GetComponent<UnitEquipmentScript>()); 
-            Debug.Log(surrogateGUIDRef.guid + " why me man");
-            //Just Change scenes
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)Scenes.COMBAT);
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += CombatContextSet;
-            yield break;
-        }
-    }
-    private void CombatContextSet(Scene scene, LoadSceneMode mode)
-    {
-        // FindAnyObjectByType<PlayerAttackScript>().SetEquipment(SaveDataHelper.LoadEquipmentData());
+        Debug.Log("found ya you lil bastard");
+        overWorldSceneChanger.To();
     }
 
-    enum Scenes
+    public enum SCENES
     {
         COMBAT,
         OVERWORLD,
         MAINMENU,
         GAMEOVER,
     }
+    
 }

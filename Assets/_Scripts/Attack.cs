@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ using UnityEngine.UI;
 public class Attack
 
 {
+    public Vector2Int[] attackShape = TileTelegraphVFXScript.GetShape(TileTelegraphVFXScript.DefaultShape.ONE_LONG);
       //The legal name assigned to the attack at birth. Deadname!
     public string attackName = "Kill";
     //The trigger set when the attack is used
@@ -18,18 +20,9 @@ public class Attack
     //created when the attack is used
     public GameObject attackGameObject;
     public LoadingBar progressBar;
-
-
     [SerializeField] float coolDownLength = 1;
     [SerializeField] private float coolDownRemaining;
     [SerializeField] bool coolDownReady;
-
-
-    public void Awake()
-    {
-        
-    }
-
     public void TickCooldown()
     {
 
@@ -41,20 +34,14 @@ public class Attack
         if (coolDownRemaining < 0)
         {
         coolDownReady = true;
-            
         }
     try
     {
-        progressBar.SetFillAmount((coolDownLength - coolDownRemaining)/coolDownLength);
-        
+        progressBar.SetFillAmount((coolDownLength - coolDownRemaining)/coolDownLength);   
     }
     catch (System.Exception)
     {
-        
-
     }
-
-     
     }
 
      internal void Use(GameObject userGameObject)

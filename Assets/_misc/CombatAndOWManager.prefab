@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3741548583475160479}
   - component: {fileID: 472039201826454851}
+  - component: {fileID: 2241334443895375016}
+  - component: {fileID: 7440612187343046650}
   m_Layer: 0
   m_Name: CombatAndOWManager
   m_TagString: Untagged
@@ -44,8 +46,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d878a9d3cb71f4aad720f56f97f6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surrogateGUIDRef:
-    serializedGuid: 36da589de75d0949bfd7181cb55cee74
-    cachedName: equipment
-    cachedScene: {fileID: 102900000, guid: 282c42708f5af8249aee9e34b0d3ef0f, type: 3}
+  combatSceneChanger: {fileID: 2241334443895375016}
+  overWorldSceneChanger: {fileID: 7440612187343046650}
   combatDataHost: {fileID: 11400000, guid: 5b4d0e8004d8efe4a958dc8cd3bb218c, type: 2}
+--- !u!114 &2241334443895375016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741548583475160476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ea900855e3b8f4188e9dc732a1e90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneChanger: {fileID: 0}
+  surrogateGUIDRef:
+    serializedGuid: 00000000000000000000000000000000
+    cachedName: 
+    cachedScene: {fileID: 0}
+--- !u!114 &7440612187343046650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741548583475160476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d55830819303a2439896c8ab26baa8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneChanger: {fileID: 0}

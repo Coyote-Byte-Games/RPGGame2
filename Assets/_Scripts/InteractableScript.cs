@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractableScript : MonoBehaviour
 {
-    [SerializeField] DialougeSO startingDialouge;
+    [SerializeField] DialogueObject startingDialouge;
     [SerializeField] DialougeManager dialougeManager;
     // Start is called before the first frame update
     void Start()

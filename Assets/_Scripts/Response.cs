@@ -11,6 +11,6 @@ using UnityEngine;
 public class Response
 {
 public string responseText;
-public DialougeSO dialougeSO;
+public DialogueObject dialouge;
  
 }

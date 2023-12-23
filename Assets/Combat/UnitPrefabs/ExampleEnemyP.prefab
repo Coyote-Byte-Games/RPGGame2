@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1503956284882521661}
   m_Father: {fileID: 9116344641171499516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,6 +107,50 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &7284161897500975579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1503956284882521661}
+  - component: {fileID: 4708425392090869341}
+  m_Layer: 21
+  m_Name: GridForeshadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1503956284882521661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284161897500975579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762365696719372724}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4708425392090869341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284161897500975579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417f1bdecfd9cdb4d86d79e0985025d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8053046650021815140
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +201,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementDriver: {fileID: 675703682}
+  closeAttack:
+    attackName: Kill
+    animationName: Attack
+    attackGameObject: {fileID: 0}
+    progressBar: {fileID: 0}
+    coolDownLength: 1
+    coolDownRemaining: 0
+    coolDownReady: 0
+  attackRange: 2
   unitData: {fileID: 675703683}
   target: {fileID: 0}
 --- !u!114 &675703682
@@ -189,6 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a534a467dd34f44897dbcd403b6e285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  TextEmitter: {fileID: 0}
   baseStats:
     unitFaction: 1
     hp: 200

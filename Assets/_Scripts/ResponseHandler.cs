@@ -45,7 +45,7 @@ public class ResponseHandler : MonoBehaviour
         }
         tempResponseButtons.Clear();
                 responseBox.gameObject.SetActive(false);
-        manager.ShowDialouge(response.dialougeSO);
+        manager.ShowDialouge(response.dialouge);
 
     }
 
