@@ -6,7 +6,7 @@ abstract class AttackGameObject : MonoBehaviour
     /// <summary>
     /// The gameobject that launched the attack. Should probably be changed to a specific interface or class for characters.
     /// </summary>
-     public GameObject user;
+    public GameObject user;
     [SerializeField] public int damage;
     [SerializeField] public int knockBack = 0;
     [SerializeField] protected float rangeScalar = 1;
@@ -19,7 +19,7 @@ abstract class AttackGameObject : MonoBehaviour
     }
     public void SetFactionLayer()
     {
-         int layer;
+        int layer;
         switch (user.GetComponent<UnitMB>().statInstance.unitFaction)
         {
             case Faction.Friendly:
@@ -34,8 +34,8 @@ abstract class AttackGameObject : MonoBehaviour
 
         foreach (Transform item in transform)
         {
-            
-            EffectChildren(item, (t) => t.gameObject.layer = layer, (t) => t.childCount ==0);
+
+            EffectChildren(item, (t) => t.gameObject.layer = layer, (t) => t.childCount == 0);
         }
 
     }
@@ -49,8 +49,8 @@ abstract class AttackGameObject : MonoBehaviour
         }
         foreach (Transform item in t)
         {
-        EffectChildren(item, A, P);
-            
+            EffectChildren(item, A, P);
+
         }
     }
     public virtual void Awake()
@@ -60,9 +60,6 @@ abstract class AttackGameObject : MonoBehaviour
     public virtual void Start()
     {
         SetFactionLayer();
-        Vector2 direction = user.GetComponent<MovementScript>().directionFacing;
-        GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-
-    } 
+    }
 
 }

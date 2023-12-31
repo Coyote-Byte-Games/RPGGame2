@@ -5,14 +5,14 @@ using UnityEngine;
 
 class SweepingCutAttackScript : AttackGameObject
 {
-    
+
     Rigidbody2D rb;
     public float destroyTime = .3f;
     public float speed;
     private Vector2 directionFacing;
     public void Awake()
     {
-        GetComponent<SpriteRenderer>().flipX = (UnityEngine.Random.Range(0, 100) > 50 );
+        GetComponent<SpriteRenderer>().flipX = (UnityEngine.Random.Range(0, 100) > 50);
     }
     // Start is called before the first frame update
 
@@ -21,12 +21,11 @@ class SweepingCutAttackScript : AttackGameObject
     {
         var movement = user.GetComponent<MovementScript>();
         rb = GetComponent<Rigidbody2D>();
-        directionFacing = movement.directionFacing;
+        ;// movement.directionFacing;
         rb.position = rangeScalar * directionFacing + (Vector2)user.transform.position;
         base.Start();
         //todo clean this
-        movement.MoveUnit(directionFacing, 1, 3);
-        
+
 
 
 
