@@ -14,12 +14,14 @@ public abstract class ComAI_Base : MonoBehaviour
     //todo fix this, not so good right below me
     AttackStage stage = 0;
     //todo yep this right above me
+    //todo this too 
+    private int attackRotation;
     public TileTelegraphVFXScript vFXScript;
     //tells us how long a tile is, etc
+
     private ICombatCreditManager combatCreditManager;
     public CombatGlobalInfoSO comInfo;
-    public MovementScript movementDriver;
-    public AttackCombatAction closeAttack;
+
 
     GameObject tileTelegraph;
     public int attackRange = 2;
@@ -35,14 +37,14 @@ public abstract class ComAI_Base : MonoBehaviour
     //reaches target, then lanches attack
 
     #region Unity lifetime
-    void Start()
+    virtual internal void Start()
     {
         combatCreditManager = GetComponent<ICombatCreditManager>();
-        var rb = gameObject.GetComponent<Rigidbody2D>();
+        // var rb = gameObject.GetComponent<Rigidbody2D>();
         //Perhaps an algorithm to find a certain target based off of stats and faction?
         // movementDriver.walkSpeed = unitData.statInstance.tilesPerTurn;
         CombatManager.instance.clockCycleEnd += MoveWithClock;
-        unitData.OnUpdate += closeAttack.TickCooldown;
+
     }
     #endregion
 
@@ -63,7 +65,11 @@ public abstract class ComAI_Base : MonoBehaviour
 
         HandleState(stage);
     }
+    public void Update()
 
+    {
+        Debug.Log("Current state: " + stage);
+    }
     private void HandleState(AttackStage stage)
     {
         //This is probably bad, but we also handle changing the state here. Oops.
@@ -78,21 +84,22 @@ public abstract class ComAI_Base : MonoBehaviour
         switch (stage)
         {
             case AttackStage.WAITING_FOR_DECISION:
+                //What we need to do here is get the direction in which our action will work
                 currentAction = GetAction();
                 tileTelegraph = vFXScript.CreateShape(currentAction.GetTelegraphData());
-                stage++;
+                this.stage = AttackStage.WAITING_FOR_CREDITS;
                 break;
             case AttackStage.WAITING_FOR_CREDITS:
                 //Check if we have enough credits to move on and finish this nonsense
-                if (currentAction.CreditsRequired() <= combatCreditManager.GetCredits())
+                if (currentAction.CreditsRequired() <= combatCreditManager.Credits)
                 {
-                    stage++;
+                    this.stage = AttackStage.WAITING_TO_ATTACK;
                 }
                 break;
             case AttackStage.WAITING_TO_ATTACK:
                 Destroy(tileTelegraph);
-                Attack();
-                stage = AttackStage.WAITING_FOR_DECISION;
+                currentAction.Use(gameObject);
+                this.stage = AttackStage.WAITING_FOR_DECISION;
                 break;
             default:
                 throw new NotImplementedException("Combat AI found state unhandled!");

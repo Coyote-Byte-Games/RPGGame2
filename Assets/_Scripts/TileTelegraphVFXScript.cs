@@ -24,7 +24,7 @@ public class TileTelegraphVFXScript : MonoBehaviour
     //return
     return output;
   }
-  
+
   public GameObject CreateShape(TileTelegraphData data)
   {
     return CreateShape(data.color, data.tileCoords);
@@ -56,17 +56,23 @@ public class TileTelegraphVFXScript : MonoBehaviour
   };
   public static class ShapeUtil
   {
+    public static Vector2Int Rotate(Vector2 v, float delta)
+    {
+      return new Vector2Int(
+          (int)(v.x * Mathf.Cos(delta * Mathf.Deg2Rad) - v.y * Mathf.Sin(delta * Mathf.Deg2Rad)),
+          (int)(v.x * Mathf.Sin(delta * Mathf.Deg2Rad) + v.y * Mathf.Cos(delta * Mathf.Deg2Rad))
+      );
+    }
     public static Vector2Int[] LineFroToVertical(int x, int startY, int endY)
     {
-      var length = endY - startY;
-      if (length < 0)
-      {
-        throw new IndexOutOfRangeException("Starting index was after the ending index!");
-      }
-      var output = new Vector2Int[endY - startY];
+      //todo reshape this algorithm to work with both directions. Currently only goes in one direction
+      var length = Mathf.Abs(endY - startY);
+      var sign = MathF.Sign(endY - startY);
+      Debug.Log("Length of the McDonalds Sea Joy Meal is " + length);
+      var output = new Vector2Int[length];
       for (int i = 0; i < length; i++)
       {
-        output[i] = new Vector2Int(x, startY + i);
+        output[i] = new Vector2Int(x, startY + i * sign);
       }
       return output;
     }
@@ -77,9 +83,9 @@ public class TileTelegraphVFXScript : MonoBehaviour
     public static Color32 Yellow => new Color(0.988f, 0.906f, 0.533f, 0.5f);
   }
 
- 
+
 }
- public struct TileTelegraphData
-  {
-    public Color color; public Vector2Int[] tileCoords; public Vector2 heading;
-  }
+public struct TileTelegraphData
+{
+  public Color color; public Vector2Int[] tileCoords; public Vector2 heading;
+}

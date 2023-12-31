@@ -23,6 +23,12 @@ public class MovementScript : MonoBehaviour
         StartCoroutine(MoveUnit_Inner(dirFacing, distance, speed));
 
     }
+    
+    public void MoveUnit(UnityEngine.Vector2 vector)
+    {
+        StartCoroutine(MoveUnit_Inner(vector, vector.magnitude, 2));
+
+    }
     private IEnumerator MoveUnit_Inner(UnityEngine.Vector2 dirFacing, float distance, float speed)
     {
         for (int i = 0; i < distance; i++)
@@ -59,12 +65,7 @@ public class MovementScript : MonoBehaviour
     public Vector2 directionFacing;
     public void MovementMethod()
     {
-        //smell but oh well
-        // if (((int)directionSupplied.x != 0) || (int)directionSupplied.y != 0)
-        // {
         rb.position += walkSpeed * directionFacing;
-        // }
-
     }
     public void ForceMovement(Vector2 direction)
     {
@@ -113,4 +114,6 @@ public class MovementScript : MonoBehaviour
         #endregion
         UpdateDirectionFacing();
     }
+
+   
 }
