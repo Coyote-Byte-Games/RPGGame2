@@ -13,9 +13,10 @@ public abstract class ComAI_Base : MonoBehaviour
 {
     //todo fix this, not so good right below me
     AttackStage stage = 0;
+    float _currentCooldown = 0;
     //todo yep this right above me
     //todo this too 
-    private int attackRotation;
+
     public TileTelegraphVFXScript vFXScript;
     //tells us how long a tile is, etc
 
@@ -70,7 +71,7 @@ public abstract class ComAI_Base : MonoBehaviour
     {
         Debug.Log("Current state: " + stage);
     }
-    private void HandleState(AttackStage stage)
+    private void HandleState(AttackStage DONOTINCREMENTTHISONEUSETHEOTHERSTAGEVARIABLE)
     {
         //This is probably bad, but we also handle changing the state here. Oops.
         //cases:
@@ -81,7 +82,7 @@ public abstract class ComAI_Base : MonoBehaviour
 
         //3: We have enough credits, launch attack
 
-        switch (stage)
+        switch (DONOTINCREMENTTHISONEUSETHEOTHERSTAGEVARIABLE)
         {
             case AttackStage.WAITING_FOR_DECISION:
                 //What we need to do here is get the direction in which our action will work
@@ -99,11 +100,28 @@ public abstract class ComAI_Base : MonoBehaviour
             case AttackStage.WAITING_TO_ATTACK:
                 Destroy(tileTelegraph);
                 currentAction.Use(gameObject);
-                this.stage = AttackStage.WAITING_FOR_DECISION;
+                _currentCooldown = GetCooldown(currentAction.GetBaseCooldown());
+                this.stage = AttackStage.RECOVERING_FROM_ATTACK;
+                break;
+            case AttackStage.RECOVERING_FROM_ATTACK:
+                if ((_currentCooldown -= CombatManager.instance.ClockDuration) <= 0)
+                {
+
+                    this.stage = AttackStage.WAITING_FOR_DECISION;
+                }
                 break;
             default:
                 throw new NotImplementedException("Combat AI found state unhandled!");
         }
+    }
+
+    /// <summary>
+    ///Provides an interface to get cooldown from another objects cooldown. Use this, since there will probably be methods ini the future that change cooldown (buffs, equipment, etc) 
+    /// </summary>
+
+    private float GetCooldown(float value)
+    {
+        return value;
     }
 
     private void ScheduleAttack(ICombatAction suspectedAction)
@@ -112,12 +130,6 @@ public abstract class ComAI_Base : MonoBehaviour
     }
 
     //this makes me want to cry.
-
-
-    private bool ActionLoopDone()
-    {
-        return !_actionLoopInProgress;
-    }
     public bool TryAttack()
     {
         //Check if target within range
@@ -133,7 +145,8 @@ public abstract class ComAI_Base : MonoBehaviour
     {
         WAITING_FOR_DECISION,
         WAITING_FOR_CREDITS,
-        WAITING_TO_ATTACK
+        WAITING_TO_ATTACK,
+        RECOVERING_FROM_ATTACK
     }
 
     internal abstract ICombatAction GetAction();

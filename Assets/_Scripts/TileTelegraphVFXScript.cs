@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,6 +58,10 @@ public class TileTelegraphVFXScript : MonoBehaviour
   };
   public static class ShapeUtil
   {
+    public static int GetRotationDegrees(Vector2 vector)
+    {
+      return Mathf.RoundToInt(Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg);
+    }
     public static Vector2Int Rotate(Vector2 v, float delta)
     {
       return new Vector2Int(
@@ -63,6 +69,7 @@ public class TileTelegraphVFXScript : MonoBehaviour
           (int)(v.x * Mathf.Sin(delta * Mathf.Deg2Rad) + v.y * Mathf.Cos(delta * Mathf.Deg2Rad))
       );
     }
+
     public static Vector2Int[] LineFroToVertical(int x, int startY, int endY)
     {
       //todo reshape this algorithm to work with both directions. Currently only goes in one direction

@@ -8,7 +8,7 @@ using static SceneTransitioner;
 public class CombatManager : Singleton<CombatManager>
 {
     //We want to store a clock within this class and notify everything whenever the clock finishes.
-    [SerializeField] float clockDuration;
+    public float ClockDuration;
     public delegate void ClockCycleAction();
     public event ClockCycleAction clockCycleEnd;
     protected override void Awake()
@@ -30,7 +30,7 @@ public class CombatManager : Singleton<CombatManager>
     {
         for (; ; )
         {
-            yield return new WaitForSeconds(clockDuration);
+            yield return new WaitForSeconds(ClockDuration);
             clockCycleEnd?.Invoke();
 
         }

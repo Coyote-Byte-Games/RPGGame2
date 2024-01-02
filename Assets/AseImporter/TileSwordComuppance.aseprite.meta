@@ -33,7 +33,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 16
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638396190375662178
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -126,11 +126,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 44
+      x: 48
       y: 4
       width: 6
       height: 5
-    spriteID: 8ec3840e003d61a4f9485f43da12f966
+    spriteID: 72ea803f34d4e66419d2adc65da8912c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -138,7 +138,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 44, y: 4}
+    uvTransform: {x: 48, y: 4}
   - name: TileSwordComuppance_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -146,11 +146,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 24
+      x: 26
       y: 51
       width: 12
       height: 7
-    spriteID: af8b2fb2703a02a479c5324f59fffbf3
+    spriteID: 514b80aa3372e264ab6f1edd4ddc6483
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -158,7 +158,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 24, y: 51}
+    uvTransform: {x: 26, y: 51}
   - name: TileSwordComuppance_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -166,11 +166,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 24
+      x: 26
       y: 35
       width: 12
       height: 8
-    spriteID: a3aa4901e412bfc46b317b3910432683
+    spriteID: 69dadda97515a724c97e5599839bf09a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,19 +178,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 24, y: 35}
+    uvTransform: {x: 26, y: 35}
   - name: TileSwordComuppance_Frame_3
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5714286, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 12
+      width: 14
       height: 28
-    spriteID: b1ebcfc050392c2449aff69e231b94ab
+    spriteID: a862137b07b1a64478c04082038948c0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -201,16 +201,16 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: TileSwordComuppance_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5714286, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 24
+      x: 26
       y: 4
-      width: 12
+      width: 14
       height: 23
-    spriteID: d008829b1b02c624c926d736836c8330
+    spriteID: 9d3e1d6e31270f8499d8e43c1a03f014
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -218,7 +218,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 24, y: 4}
+    uvTransform: {x: 26, y: 4}
   - name: TileSwordComuppance_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -230,7 +230,7 @@ ScriptedImporter:
       y: 40
       width: 12
       height: 18
-    spriteID: 8cc2a88a2c8e75e48bf8f8355238e891
+    spriteID: e17dac2c656bd1b4a85c0ab89dccc0d8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -246,11 +246,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 44
+      x: 48
       y: 17
       width: 6
       height: 5
-    spriteID: cc76e48bc4c6fda459a32d7c9886bff5
+    spriteID: 3d1b9665bcd1f5c47aadac75cfea96fc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -258,7 +258,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 44, y: 17}
+    uvTransform: {x: 48, y: 17}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -275,7 +275,7 @@ ScriptedImporter:
         y: 1
         width: 6
         height: 5
-      spriteId: 8ec3840e003d61a4f9485f43da12f966
+      spriteId: 72ea803f34d4e66419d2adc65da8912c
     - name: TileSwordComuppance_Frame_1
       frameIndex: 1
       cellRect:
@@ -283,7 +283,7 @@ ScriptedImporter:
         y: 0
         width: 12
         height: 7
-      spriteId: af8b2fb2703a02a479c5324f59fffbf3
+      spriteId: 514b80aa3372e264ab6f1edd4ddc6483
     - name: TileSwordComuppance_Frame_2
       frameIndex: 2
       cellRect:
@@ -291,23 +291,23 @@ ScriptedImporter:
         y: 0
         width: 12
         height: 8
-      spriteId: a3aa4901e412bfc46b317b3910432683
+      spriteId: 69dadda97515a724c97e5599839bf09a
     - name: TileSwordComuppance_Frame_3
       frameIndex: 3
       cellRect:
-        x: 2
+        x: 0
         y: 0
-        width: 12
+        width: 14
         height: 28
-      spriteId: b1ebcfc050392c2449aff69e231b94ab
+      spriteId: a862137b07b1a64478c04082038948c0
     - name: TileSwordComuppance_Frame_4
       frameIndex: 4
       cellRect:
-        x: 2
+        x: 0
         y: 0
-        width: 12
+        width: 14
         height: 23
-      spriteId: d008829b1b02c624c926d736836c8330
+      spriteId: 9d3e1d6e31270f8499d8e43c1a03f014
     - name: TileSwordComuppance_Frame_5
       frameIndex: 5
       cellRect:
@@ -315,7 +315,7 @@ ScriptedImporter:
         y: 0
         width: 12
         height: 18
-      spriteId: 8cc2a88a2c8e75e48bf8f8355238e891
+      spriteId: e17dac2c656bd1b4a85c0ab89dccc0d8
     - name: TileSwordComuppance_Frame_6
       frameIndex: 6
       cellRect:
@@ -323,10 +323,43 @@ ScriptedImporter:
         y: 1
         width: 6
         height: 5
-      spriteId: cc76e48bc4c6fda459a32d7c9886bff5
+      spriteId: 3d1b9665bcd1f5c47aadac75cfea96fc
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 

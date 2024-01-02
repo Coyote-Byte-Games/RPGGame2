@@ -4,10 +4,16 @@ using UnityEngine;
 
 public interface ICombatAction
 {
+
+    /// <summary>
+    /// Responsible for returning the direciton the attack will go in, alongside heading 
+    /// </summary>
     /// <returns>Data that describes the attack, including color and tile shape</returns>
 
     TileTelegraphData GetTelegraphData();
     int CreditsRequired();
     void Use(GameObject userGameobject);
-    public bool ShouldUse(GameObject user, GameObject origin);
+    public bool AffirmUseAndDir(GameObject user, GameObject origin);
+    float GetBaseCooldown();
+    public bool TryGetSupposedHeading(out int heading);
 }
