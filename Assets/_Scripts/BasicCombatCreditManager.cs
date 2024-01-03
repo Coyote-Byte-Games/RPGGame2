@@ -1,8 +1,13 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class BasicCombatCreditManager : MonoBehaviour, ICombatCreditManager
+public class BasicCombatCreditManager : SerializedMonoBehaviour, ICombatCreditManager
 {
+    public void Start()
+    {
+        CombatManager.instance.clockCycleEnd += TakeCombatTick;
+    }
     [SerializeField] internal int credits;
 
     public int Credits { get => credits; set => credits = value; }
@@ -12,6 +17,7 @@ public class BasicCombatCreditManager : MonoBehaviour, ICombatCreditManager
 
     public void TakeCombatTick()
     {
-        credits++;
+        Debug.Log("sckrin!");
+        Credits++;
     }
 }

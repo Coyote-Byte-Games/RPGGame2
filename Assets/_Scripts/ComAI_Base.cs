@@ -61,7 +61,7 @@ public abstract class ComAI_Base : MonoBehaviour
     private void MoveWithClock()
     {
 
-        combatCreditManager.TakeCombatTick();
+        // combatCreditManager.TakeCombatTick();
         //todo put logic here
 
         HandleState(stage);
@@ -99,6 +99,7 @@ public abstract class ComAI_Base : MonoBehaviour
                 break;
             case AttackStage.WAITING_TO_ATTACK:
                 Destroy(tileTelegraph);
+                Debug.Log("well well " + currentAction);
                 currentAction.Use(gameObject);
                 _currentCooldown = GetCooldown(currentAction.GetBaseCooldown());
                 this.stage = AttackStage.RECOVERING_FROM_ATTACK;

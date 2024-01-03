@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.Serialization;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,7 +17,7 @@ public abstract class AttackCombatActionBase : MonoBehaviour, ICombatAction
     //The trigger set when the attack is used
     public string animationName = "Attack";
     //created when the attack is used
-    public GameObject attackGameObject;
+    [OdinSerialize] public GameObject attackGameObject;
     public LoadingBar progressBar;
     [SerializeField] internal float coolDownLength = 1;
     [SerializeField] internal float coolDownRemaining;
@@ -103,24 +104,5 @@ public abstract class AttackCombatActionBase : MonoBehaviour, ICombatAction
     public float GetBaseCooldown()
     {
         return coolDownLength;
-    }
-}
-
-//: Not renaming this because I don't want to deal with Unity being a child about everything
-public class AttackCombatAction : AttackCombatActionBase
-
-{
-    public override void Use(GameObject userGameObject)
-    {
-
-        //! rn this like barely works. A true shadow of its former self
-
-        //            userGameObject.GetComponentInChildren<Animator>().SetTrigger(animationName);
-        TryGetSupposedHeading(out int heading);
-        var spawn = GameObject.Instantiate(attackGameObject, userGameObject.transform.position, Quaternion.Euler(0, 0, heading));
-        spawn.GetComponentInChildren<AttackGameObject>().user = userGameObject;
-        coolDownReady = false;
-        coolDownRemaining = coolDownLength;
-
     }
 }

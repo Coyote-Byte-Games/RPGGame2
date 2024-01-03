@@ -22,7 +22,7 @@ public class UnitMB : MonoBehaviour
    public Stats statInstance;
 
    public event Action OnDeath;
-    public void Awake()
+   public void Awake()
    {
       statInstance = baseStats;
 
@@ -71,22 +71,22 @@ public class UnitMB : MonoBehaviour
          healthBar.SetFillAmount((float)statInstance.hp / baseStats.hp);
 
       }
-      
+
       //todo sloppy, fix this
       // TakeKnockback((attack.transform.position - transform.position).normalized, attack.knockBack);
 
    }
 
-    private void TakeKnockback(Vector2 direction, int knockBack)
-    {
-          GetComponent<MovementScript>().MoveUnit(direction, knockBack, 15);
+   private void TakeKnockback(Vector2 direction, int knockBack)
+   {
+      GetComponent<MovinDirectinFacin>().MoveUnit(direction, knockBack, 15);
 
-    }
+   }
 
-    internal int GetHP()
-    {
+   internal int GetHP()
+   {
       return statInstance.hp;
-    }
+   }
 }
 [Serializable]
 public struct Stats

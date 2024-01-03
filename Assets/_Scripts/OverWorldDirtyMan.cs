@@ -7,10 +7,11 @@ public class OverWorldDirtyMan : SceneHandsDirtyMan
 {
     public override void To()
     {
-       //FindObjectOfType<MonoBehaviour>()
-       GameObject.Find("Spork").GetComponent<MonoBehaviour>().StartCoroutine(LoadOverworld());
+        //FindObjectOfType<MonoBehaviour>()
+        UnitManager.instance.StartCoroutine(LoadOverworld());
+        //    GameObject.Find("Spork").GetComponent<MonoBehaviour>().StartCoroutine(LoadOverworld());
     }
-     private IEnumerator LoadOverworld()
+    private IEnumerator LoadOverworld()
     {
         for (; ; )
         {
@@ -20,7 +21,7 @@ public class OverWorldDirtyMan : SceneHandsDirtyMan
             yield return new WaitForSeconds(2f);
             UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             // yield return new WaitForSeconds(0.5f);
-            
+
             yield break;
         }
     }

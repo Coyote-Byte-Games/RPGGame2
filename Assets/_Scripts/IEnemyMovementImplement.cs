@@ -6,5 +6,5 @@ public interface IEnemyMovementImplement
     /// However this implement does it, finds the direction it should go in
     /// </summary>
     /// <returns></returns>
-    public Vector2 GetPracticalDirection();
+    public Vector2Int GetPracticalDirection();
 }

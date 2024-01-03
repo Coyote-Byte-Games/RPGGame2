@@ -28,7 +28,8 @@ public class AttackCombatActionTileBased : AttackCombatActionBase
         //For each tile, instantiate that attack item 
         foreach (var item in pattern.Select(x => new Vector3(x.x, x.y, 0)))
         {
-            var tiledAttack = GameObject.Instantiate(attackGameObject, item, quaternion.identity, parent.transform);
+            var tiledAttack = Instantiate(attackGameObject.gameObject, item, quaternion.identity, parent.transform);
+            tiledAttack.GetComponentInChildren<TiledAttackGameObject>().SetUser(gameObject);
             tiledAttack.transform.localPosition = item * info.CombatStepDistance;
         }
     }

@@ -1,18 +1,27 @@
 using System;
+using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
-abstract class AttackGameObject : MonoBehaviour
+public abstract class AttackGameObject : MonoBehaviour
 {
     /// <summary>
     /// The gameobject that launched the attack. Should probably be changed to a specific interface or class for characters.
     /// </summary>
-    public GameObject user;
+
+    #region Fields
+    //[HideInInspector] 
+    [ShowInInspector] private GameObject _user;
     [SerializeField] public int damage;
     [SerializeField] public int knockBack = 0;
-    [SerializeField] protected float rangeScalar = 1;
-    [SerializeField] public bool isCrit;
-    [SerializeField] public float critMultiplier;
-    [SerializeField] public float miniCritChance;
+
+    [TabGroup("Crits")][SerializeField] public float critMultiplier = 2;
+    [Range(0, 1)]
+    [TabGroup("Crits")][SerializeField] public float miniCritChance;
+
+    [TabGroup("Crits")][ReadOnly] public bool isCrit;
+
+    #endregion
+
     public int GetDamage()
     {
         return (int)(damage * (isCrit ? critMultiplier : 1));
@@ -20,7 +29,7 @@ abstract class AttackGameObject : MonoBehaviour
     public void SetFactionLayer()
     {
         int layer;
-        switch (user.GetComponent<UnitMB>().statInstance.unitFaction)
+        switch (_user.GetComponent<UnitMB>().statInstance.unitFaction)
         {
             case Faction.Friendly:
                 layer = LayerMask.NameToLayer("Friendly Attack");
@@ -39,6 +48,14 @@ abstract class AttackGameObject : MonoBehaviour
         }
 
     }
+    public void SetUser(GameObject user)
+    {
+        this._user = user;
+    }
+    public GameObject GetUser()
+    {
+        return _user;
+    }
     private void EffectChildren(Transform t, Action<Transform> A, Predicate<Transform> P)
     {
         //HAVE FUN READING THIS FOOL 
@@ -53,6 +70,7 @@ abstract class AttackGameObject : MonoBehaviour
 
         }
     }
+    #region Lifecycle
     public virtual void Awake()
     {
         this.isCrit = UnityEngine.Random.Range(0, 100) < miniCritChance * 100;
@@ -61,5 +79,7 @@ abstract class AttackGameObject : MonoBehaviour
     {
         SetFactionLayer();
     }
+
+    #endregion
 
 }

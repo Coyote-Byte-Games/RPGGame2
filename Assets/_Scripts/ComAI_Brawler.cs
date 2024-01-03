@@ -9,13 +9,14 @@ public class ComAI_Brawler : ComAI_Base
 {
     public AttackCombatActionTileBased closeAttack;
     public MovementCombatAction movementAction;
-
+    public int walkDistance = 1;
 
 
     internal override void Start()
     {
         base.Start();
         unitData.OnUpdate += closeAttack.TickCooldown;
+
     }
     internal override void Attack()
     {
@@ -45,6 +46,8 @@ public class ComAI_Brawler : ComAI_Base
 
     private ICombatAction GetMoveDown()
     {
+        movementAction.AffirmUseAndDir(gameObject, target);
+        movementAction.magnitude = walkDistance;
         return movementAction;
     }
 }

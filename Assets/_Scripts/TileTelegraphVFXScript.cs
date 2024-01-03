@@ -59,7 +59,10 @@ public class TileTelegraphVFXScript : MonoBehaviour
   public static class ShapeUtil
   {
     public static int GetRotationDegrees(Vector2 vector)
+
     {
+      Debug.Log("mayn " + vector);
+      Debug.Log("BARK AND A BARK " + Mathf.RoundToInt(Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg));
       return Mathf.RoundToInt(Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg);
     }
     public static Vector2Int Rotate(Vector2 v, float delta)

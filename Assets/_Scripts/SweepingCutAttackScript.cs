@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-class SweepingCutAttackScript : AttackGameObject
+class SweepingCutAttackScript : FreeFormAttackGameObject
 {
 
     Rigidbody2D rb;
@@ -19,10 +19,10 @@ class SweepingCutAttackScript : AttackGameObject
     // Update is called once per frame
     public override void Start()
     {
-        var movement = user.GetComponent<MovementScript>();
+        var movement = GetUser().GetComponent<MovinDirectinFacin>();
         rb = GetComponent<Rigidbody2D>();
         ;// movement.directionFacing;
-        rb.position = rangeScalar * directionFacing + (Vector2)user.transform.position;
+        rb.position = rangeScalar * directionFacing + (Vector2)GetUser().transform.position;
         base.Start();
         //todo clean this
 
@@ -37,4 +37,9 @@ class SweepingCutAttackScript : AttackGameObject
     {
         rb.position += directionFacing * speed * Time.deltaTime;
     }
+}
+
+public class FreeFormAttackGameObject : AttackGameObject
+{
+    public int rangeScalar;
 }

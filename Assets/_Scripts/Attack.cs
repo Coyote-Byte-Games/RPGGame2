@@ -13,7 +13,7 @@ public class Attack
 
 {
     public Vector2Int[] attackShape = TileTelegraphVFXScript.GetShape(TileTelegraphVFXScript.DefaultShape.ONE_LONG);
-      //The legal name assigned to the attack at birth. Deadname!
+    //The legal name assigned to the attack at birth. Deadname!
     public string attackName = "Kill";
     //The trigger set when the attack is used
     public string animationName = "Attack";
@@ -27,34 +27,34 @@ public class Attack
     {
 
         coolDownRemaining -= Time.deltaTime;
-           if (coolDownRemaining > 0)
+        if (coolDownRemaining > 0)
         {
             coolDownReady = false;
         }
         if (coolDownRemaining < 0)
         {
-        coolDownReady = true;
+            coolDownReady = true;
         }
-    try
-    {
-        progressBar.SetFillAmount((coolDownLength - coolDownRemaining)/coolDownLength);   
-    }
-    catch (System.Exception)
-    {
-    }
+        try
+        {
+            progressBar.SetFillAmount((coolDownLength - coolDownRemaining) / coolDownLength);
+        }
+        catch (System.Exception)
+        {
+        }
     }
 
-     internal void Use(GameObject userGameObject)
+    internal void Use(GameObject userGameObject)
     {
         if (coolDownReady)
         {
             userGameObject.GetComponentInChildren<Animator>().SetTrigger(animationName);
-        var spawn = GameObject.Instantiate(attackGameObject, userGameObject.transform.position, quaternion.identity);
-        spawn.GetComponentInChildren<AttackGameObject>().user = userGameObject;
-        coolDownReady= false;
-        coolDownRemaining = coolDownLength;
+            var spawn = GameObject.Instantiate(attackGameObject, userGameObject.transform.position, quaternion.identity);
+            spawn.GetComponentInChildren<AttackGameObject>().SetUser(userGameObject);
+            coolDownReady = false;
+            coolDownRemaining = coolDownLength;
 
         }
-        
+
     }
 }
