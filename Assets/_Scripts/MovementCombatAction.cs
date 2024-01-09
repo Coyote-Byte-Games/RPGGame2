@@ -6,9 +6,12 @@ using Unity.Burst.Intrinsics;
 using static TileTelegraphVFXScript.ShapeUtil;
 using Sirenix.Serialization;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 public class MovementCombatAction : SerializedMonoBehaviour, ICombatAction
 {
     [OdinSerialize] public IEnemyMovementImplement movementImplement;
+    public CooldownCharacterGraphic cd;
+    public float recovery;
     public int magnitude = 1;
     private Rigidbody2D originRb2D;
     public Vector2Int destination;
@@ -42,7 +45,7 @@ public class MovementCombatAction : SerializedMonoBehaviour, ICombatAction
         };
     }
 
-    public bool AffirmUseAndDir(GameObject user, GameObject target)
+    public bool AffirmUseAndDir(GameObject user, Vector2 targetPos)
     {
         //Because of SOC, I'm gonna be lazy and sub-conponent these into 
         /* 
@@ -56,6 +59,9 @@ public class MovementCombatAction : SerializedMonoBehaviour, ICombatAction
     // 
     public void Use(GameObject origin)
     {
+        Debug.Log("blaurewione");
+        Debug.Log("blaurewitwo" + origin.GetComponentInChildren<CooldownCharacterGraphic>() is null);
+        cd.SetCooldown(GetRecovery());
 
         Debug.Log("YEOOOOOOOWUCH " + destination);
         origin.GetComponent<IMovement>().DeltaPosition(originRb2D ? originRb2D : originRb2D = origin.GetComponentInParent<Rigidbody2D>(), destination);
@@ -68,4 +74,10 @@ public class MovementCombatAction : SerializedMonoBehaviour, ICombatAction
         return (heading = _heading) != -1;
 
     }
+
+    public float GetRecovery()
+    {
+        return recovery;
+    }
+
 }

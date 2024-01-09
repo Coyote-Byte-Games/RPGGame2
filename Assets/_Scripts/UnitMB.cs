@@ -107,7 +107,7 @@ public struct Stats
 
 
    //Attacks available to unit
-   public List<Attack> attacks;
+   public List<AttackCombatActionTileBased> attacks;
 
 }
 public enum Faction

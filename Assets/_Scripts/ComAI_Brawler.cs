@@ -20,20 +20,19 @@ public class ComAI_Brawler : ComAI_Base
     }
     internal override void Attack()
     {
-        //todo add heading support
         closeAttack.Use(gameObject);
 
     }
     internal override bool CanAttack()
     {
-        return Vector2.Distance(transform.position, target.transform.position) < attackRange;
+        return cd.IsDone() && Vector2.Distance(transform.position, target.transform.position) < attackRange;
     }
 
     internal override ICombatAction GetAction()
     {
 
         //Find if we're close enough to use our melee
-        if (closeAttack.AffirmUseAndDir(gameObject, target))
+        if (closeAttack.AffirmUseAndDir(gameObject, target.transform.position))
         {
 
             return closeAttack;
@@ -46,7 +45,7 @@ public class ComAI_Brawler : ComAI_Base
 
     private ICombatAction GetMoveDown()
     {
-        movementAction.AffirmUseAndDir(gameObject, target);
+        movementAction.AffirmUseAndDir(gameObject, target.transform.position);
         movementAction.magnitude = walkDistance;
         return movementAction;
     }

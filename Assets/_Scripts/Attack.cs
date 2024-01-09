@@ -39,7 +39,7 @@ public class Attack
         {
             progressBar.SetFillAmount((coolDownLength - coolDownRemaining) / coolDownLength);
         }
-        catch (System.Exception)
+        catch (Exception)
         {
         }
     }

@@ -17,6 +17,7 @@ public class AttackCombatActionTileBased : AttackCombatActionBase
     // public GameObject tileAttack;
     public override void Use(GameObject userGameObject)
     {
+        base.Use(userGameObject);
         if (!TryGetSupposedHeading(out int heading))
         {
             Debug.LogWarning("Heading not set on gameobject! Attack may default to downward positon.");

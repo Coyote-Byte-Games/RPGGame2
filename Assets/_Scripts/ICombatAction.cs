@@ -13,7 +13,12 @@ public interface ICombatAction
     TileTelegraphData GetTelegraphData();
     int CreditsRequired();
     void Use(GameObject userGameobject);
-    public bool AffirmUseAndDir(GameObject user, GameObject origin);
+    public bool AffirmUseAndDir(GameObject user, Vector2 origin);
     float GetBaseCooldown();
+    /// <summary>
+    /// Returns the time the move takes the recover from.
+    /// </summary>
+    /// <returns>Recovery time in seconds</returns>
+    float GetRecovery();
     public bool TryGetSupposedHeading(out int heading);
 }

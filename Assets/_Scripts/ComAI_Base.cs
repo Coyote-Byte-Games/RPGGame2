@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.PlasticSCM.Editor.UI;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -13,6 +14,8 @@ public abstract class ComAI_Base : MonoBehaviour
 {
     //todo fix this, not so good right below me
     AttackStage stage = 0;
+    [SerializeField] internal CooldownCharacterGraphic cd;
+
     float _currentCooldown = 0;
     //todo yep this right above me
     //todo this too 
@@ -86,9 +89,12 @@ public abstract class ComAI_Base : MonoBehaviour
         {
             case AttackStage.WAITING_FOR_DECISION:
                 //What we need to do here is get the direction in which our action will work
-                currentAction = GetAction();
-                tileTelegraph = vFXScript.CreateShape(currentAction.GetTelegraphData());
-                this.stage = AttackStage.WAITING_FOR_CREDITS;
+                if (cd.IsDone())
+                {
+                    currentAction = GetAction();
+                    tileTelegraph = vFXScript.CreateShape(currentAction.GetTelegraphData());
+                    this.stage = AttackStage.WAITING_FOR_CREDITS;
+                }
                 break;
             case AttackStage.WAITING_FOR_CREDITS:
                 //Check if we have enough credits to move on and finish this nonsense

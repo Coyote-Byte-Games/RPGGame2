@@ -266,7 +266,7 @@ MonoBehaviour:
   attacks:
   - attackShape:
     - {x: 0, y: -1}
-    attackName: 'Reaper '
+    attackName: 1000 Yd. Stare
     animationName: Scythe Spin
     attackGameObject: {fileID: 8830590586230495390, guid: 4cbf92eaaa9992a4584527d3e4a50164, type: 3}
     progressBar: {fileID: 0}

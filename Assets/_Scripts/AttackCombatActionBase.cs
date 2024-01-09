@@ -8,12 +8,14 @@ using UnityEngine;
 using static TileTelegraphVFXScript.ShapeUtil;
 public abstract class AttackCombatActionBase : MonoBehaviour, ICombatAction
 {
+    public CooldownCharacterGraphic cd;
     #region Fields
     [SerializeField] internal CombatGlobalInfoSO info;
 
     internal Vector2Int[] attackShape = TileTelegraphVFXScript.ShapeUtil.LineFroToVertical(0, -1, -5);
     //The legal name assigned to the attack at birth. Deadname!
     public string attackName = "Kill";
+    [SerializeField] float recovery = 1;
     //The trigger set when the attack is used
     public string animationName = "Attack";
     //created when the attack is used
@@ -59,7 +61,13 @@ public abstract class AttackCombatActionBase : MonoBehaviour, ICombatAction
     }
 
     //Clearly, attacks need a new "interface" so that they can turn 
-    public abstract void Use(GameObject userGameObject);
+    public virtual void Use(GameObject userGameObject)
+    {
+
+        cd.SetCooldown(GetRecovery());
+        Debug.Log("blaurewitwo" + userGameObject.GetComponentInChildren<CooldownCharacterGraphic>() is null);
+        // userGameObject.GetComponentInChildren<CooldownCharacterGraphic>().SetCooldown(GetRecovery());
+    }
 
 
     public int CreditsRequired()
@@ -73,9 +81,9 @@ public abstract class AttackCombatActionBase : MonoBehaviour, ICombatAction
 
         return new TileTelegraphData { color = TileTelegraphVFXScript.Palette.Red, tileCoords = attackShape.Select(x => Rotate(x, _heading)).ToArray(), heading = Vector2.down };
     }
-    public bool AffirmUseAndDir(GameObject user, GameObject origin)
+    public bool AffirmUseAndDir(GameObject user, Vector2 origin)
     {
-        Vector2 playerPosition = origin.transform.position;
+        Vector2 playerPosition = origin;
         Vector2 userPosition = user.transform.position;
         //Try each direction
         int[] dirs = { 0, 90, 180, 270 };
@@ -104,5 +112,10 @@ public abstract class AttackCombatActionBase : MonoBehaviour, ICombatAction
     public float GetBaseCooldown()
     {
         return coolDownLength;
+    }
+
+    public float GetRecovery()
+    {
+        return recovery;
     }
 }
