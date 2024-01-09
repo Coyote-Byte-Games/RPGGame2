@@ -178,12 +178,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa8d20ab72228e4b9548aa10cafcba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cd: {fileID: 960619800}
   vFXScript: {fileID: 1595383}
   comInfo: {fileID: 11400000, guid: b5c91d1349796864a90ce6555f5a4077, type: 2}
   attackRange: 4
   unitData: {fileID: 1595382}
   target: {fileID: 1695404617}
-  cd: {fileID: 960619800}
   closeAttack: {fileID: 1595387}
   movementAction: {fileID: 1595388}
   walkDistance: 1
@@ -974,7 +974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294861239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: -30}
+  m_LocalPosition: {x: -1, y: -0.001, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2157,7 +2157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: -30}
+  m_LocalPosition: {x: -1, y: -0.001, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2507,7 +2507,7 @@ MonoBehaviour:
   itemBase: {fileID: 11400000, guid: aaa13cf762c248b438dcec97791961af, type: 2}
   attacks:
   - attackShape:
-    - {x: 0, y: -1}
+    - {x: 2, y: -1}
     attackName: hey! it worked!
     animationName: 
     attackGameObject: {fileID: 8830590586230495390, guid: 4cbf92eaaa9992a4584527d3e4a50164, type: 3}
@@ -6246,7 +6246,7 @@ MonoBehaviour:
   itemBase: {fileID: 11400000, guid: aaa13cf762c248b438dcec97791961af, type: 2}
   attacks:
   - attackShape:
-    - {x: 0, y: -1}
+    - {x: 2, y: -1}
     attackName: hey! it worked!
     animationName: 
     attackGameObject: {fileID: 8830590586230495390, guid: 4cbf92eaaa9992a4584527d3e4a50164, type: 3}
@@ -24139,19 +24139,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1226017106202577577, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
       propertyPath: m_Size.x
-      value: 0.8594066
+      value: 0.71674204
       objectReference: {fileID: 0}
     - target: {fileID: 1226017106202577577, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
       propertyPath: m_Size.y
-      value: 0.8044882
+      value: 0.60634273
       objectReference: {fileID: 0}
     - target: {fileID: 1226017106202577577, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
       propertyPath: m_Offset.x
-      value: -0.011779606
+      value: -0.003853798
       objectReference: {fileID: 0}
     - target: {fileID: 1226017106202577577, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
       propertyPath: m_Offset.y
-      value: 0.09176576
+      value: -0.007306963
       objectReference: {fileID: 0}
     - target: {fileID: 2915096197196125149, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
       propertyPath: attackUI
@@ -24171,7 +24171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3753352041749847656, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: 3753352041749847656, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24213,6 +24213,30 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 683080661}
+    - target: {fileID: 7942549181064009817, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
+      propertyPath: baseStats.attacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942549181064009817, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
+      propertyPath: baseStats.attacks.Array.data[0].attackName
+      value: Kill
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942549181064009817, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
+      propertyPath: baseStats.attacks.Array.data[0].coolDownLength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942549181064009817, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
+      propertyPath: baseStats.attacks.Array.data[0].attackGameObject
+      value: 
+      objectReference: {fileID: 1492390313005252416, guid: 77bd9a923e456fc449123a41b1cd7281, type: 3}
+    - target: {fileID: 7942549181064009817, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
+      propertyPath: baseStats.attacks.Array.data[0].attackShape.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942549181064009817, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
+      propertyPath: baseStats.attacks.Array.data[1].attackShape.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5678522116404839061, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
     - {fileID: 2915096197196125158, guid: fc9861959a831e347a5b28a13ed9f7af, type: 3}
